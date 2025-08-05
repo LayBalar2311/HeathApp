@@ -13,7 +13,7 @@ function DailySchedule() {
   useEffect(() => {
     const fetchSchedule = async () => {
       try {
-        const response = await axios.get(`${API_URL}/schedule`, {
+        const response = await axios.get(`${API_URL}/api/schedule`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setSchedule(response.data);

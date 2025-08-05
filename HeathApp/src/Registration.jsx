@@ -16,7 +16,7 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${API_URL}/users/register`, { name, email, password });
+      const response = await axios.post(`${API_URL}/api/users/register`, { name, email, password });
 
       // Store the user and token in Redux and local storage
       dispatch(setUser({ user: response.data.user, token: response.data.token }));

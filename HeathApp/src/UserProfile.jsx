@@ -17,7 +17,7 @@ function UserProfile() {
     }
     const fetchProfile = async () => {
       try {
-        const response = await axios.get(`${API_URL}/users/profile`, {
+        const response = await axios.get(`${API_URL}/api/users/profile`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setProfile(response.data);
@@ -32,7 +32,7 @@ function UserProfile() {
     e.preventDefault();
     try {
       await axios.put(
-        `${API_URL}/users/profile`,
+        `${API_URL}/api/users/profile`,
         profile,
         { headers: { Authorization: `Bearer ${token}` } }
       );

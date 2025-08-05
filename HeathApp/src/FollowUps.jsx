@@ -14,7 +14,7 @@ function FollowUps() {
   useEffect(() => {
     const fetchFollowUps = async () => {
       try {
-        const response = await axios.get(`${API_URL}/followups`, {
+        const response = await axios.get(`${API_URL}/api/followups`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setFollowUps(response.data);
@@ -29,7 +29,7 @@ function FollowUps() {
     e.preventDefault();
     try {
       await axios.post(
-        `${API_URL}/followups/feedback`,
+        `${API_URL}/api/followups/feedback`,
         { feedback },
         { headers: { Authorization: `Bearer ${token}` } }
       );

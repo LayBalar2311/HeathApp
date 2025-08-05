@@ -34,7 +34,7 @@ function PrakritiAnalysis() {
     e.preventDefault();
     try {
       const analysisResponse = await axios.post(
-        `${API_URL}/prakriti/analyze`,
+        `${API_URL}/api/prakriti/analyze`,
         answers,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -44,7 +44,7 @@ function PrakritiAnalysis() {
 
       // Send the new prakriti data to the backend to update the user profile
       const updateResponse = await axios.put(
-        `${API_URL}/users/profile`,
+        `${API_URL}/api/users/profile`,
         { prakriti: newPrakriti },
         { headers: { Authorization: `Bearer ${token}` } }
       );
