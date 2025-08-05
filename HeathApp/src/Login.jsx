@@ -16,7 +16,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${API_URL}/users/login`, { email, password });
+      const response = await axios.post(`${API_URL}/api/users/login`, { email, password });
       dispatch(setUser({ user: response.data.user, token: response.data.token }));
       localStorage.setItem('token', response.data.token);
       navigate(response.data.user.role === 'admin' ? '/admin' : '/dashboard');
