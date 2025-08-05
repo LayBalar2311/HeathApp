@@ -14,17 +14,26 @@ function Login() {
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(`${API_URL}/api/users/login`, { email, password });
+  e.preventDefault();
+  console.log('Login button clicked'); // ✅ Add this
+  console.log('Email:', email, 'Password:', password); // ✅ Add this
+
+  try {
+    const response = await axios.post(`${API_URL}/api/users/login`, {
+      email,
+      password,
+    });
+    console.log('Login success:', response.data); // ✅ Add this
+
+      
       dispatch(setUser({ user: response.data.user, token: response.data.token }));
       localStorage.setItem('token', response.data.token);
       navigate(response.data.user.role === 'admin' ? '/admin' : '/dashboard');
     } catch (error) {
-      alert('Login failed: ' + error.response.data.message);
-    }
-  };
-
+    console.error('Login failed:', error); // ✅ Add this
+    alert('Login failed: ' + error.response?.data?.message || error.message);
+  }
+};
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-4">Login</h2>
