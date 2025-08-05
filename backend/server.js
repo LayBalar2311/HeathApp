@@ -1,28 +1,33 @@
-// /backend/server.js
 import express from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
-import connectDB from './db.js'; // adjust as needed
-import userRoutes from './userRoutes.js'; // your API routes
-import prakritiRoutes from './prakritiRoutes.js';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-
-dotenv.config(); // load .env
-connectDB();     // connect to Atlas
-
+dotenv.config();
 const app = express();
 
-app.use(cors());
+// ✅ Enable CORS (for frontend API access)
+app.use(cors({
+  origin: 'https://your-frontend.vercel.app', // Replace with your actual frontend URL
+  credentials: true
+}));
+
+// ✅ Middlewares
 app.use(express.json());
 
+// ✅ Routes (your existing)
+import userRoutes from './userRoutes.js'; // example
 app.use('/api/users', userRoutes);
 
-app.use('/api/prakriti', prakritiRoutes);
-
-// Basic route
+// ✅ Root test route
 app.get('/', (req, res) => {
-  res.send('API is running...');
+  res.send('API is running');
 });
 
+// ✅ DB + Server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+  })
+  .catch((err) => console.error(err));
