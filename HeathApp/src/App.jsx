@@ -16,7 +16,7 @@ import DailySchedule from './DailySchedule.jsx';
 import FollowUps from './FollowUps.jsx';
 import Dashboard from './Dashbord.jsx'; // Corrected spelling
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = process.env.REACT_APP_API_BASE_URL + '/api';
 
 function App() {
   // Initialize the navigate hook to use the navigate function
