@@ -7,6 +7,11 @@ import User from './user.js';
 
 const router = express.Router();
 
+router.get('/test', (req, res) => {
+  res.json({ message: '✅ userRoutes working' });
+});
+
+
 // @route POST /api/users/register
 // @desc Register a new user
 router.post('/register', async (req, res) => {
