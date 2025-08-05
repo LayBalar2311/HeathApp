@@ -6,11 +6,12 @@ import dotenv from 'dotenv';
 dotenv.config();
 const app = express();
 
-// ✅ Enable CORS (for frontend API access)
+
 app.use(cors({
-  origin: 'https://your-frontend.vercel.app', // Replace with your actual frontend URL
+  origin: 'https://heath-app-livid.vercel.app',  // ✅ Your frontend domain
   credentials: true
 }));
+
 
 // ✅ Middlewares
 app.use(express.json());
