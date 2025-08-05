@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
 import { setUser } from './features/authSlice'; // Correctly import setUser action
 
-const API_URL = "https://heathapp-3a79.onrender.com";
+const API_URL = process.env.REACT_APP_API_BASE_URL;
 
 function PrakritiAnalysis() {
   const { token, user } = useSelector((state) => state.auth);

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'; // Import useDispatch
 import axios from 'axios';
 import { setUser } from './features/authSlice.js'; // Import setUser
 
-const API_URL = "https://heathapp-3a79.onrender.com";
+const API_URL = process.env.REACT_APP_API_BASE_URL;
 
 function Register() {
   const [name, setName] = useState('');

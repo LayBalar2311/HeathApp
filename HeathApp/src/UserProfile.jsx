@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const API_URL = "https://heathapp-3a79.onrender.com";
+const API_URL = process.env.REACT_APP_API_BASE_URL;
 
 function UserProfile() {
   const { user, token } = useSelector((state) => state.auth);
