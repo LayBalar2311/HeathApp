@@ -2,38 +2,36 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import userRoutes from './userRoutes.js'; // example
-
+import userRoutes from './userRoutes.js';
 
 dotenv.config();
 const app = express();
 
-
 app.use(cors({
-  origin: 'https://heath-app-livid.vercel.app',  // ✅ Your frontend domain
+  origin: 'https://heath-app-livid.vercel.app',
   credentials: true
 }));
-
-
-// ✅ Middlewares
 app.use(express.json());
 
-// ✅ Routes (your existing)
+// Use the user routes
 app.use('/api/users', userRoutes);
 
-// ✅ Root test route
+// Root test route
 app.get('/', (req, res) => {
   res.send('API is running');
 });
 
-// ✅ DB + Server
 const PORT = process.env.PORT || 5000;
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => {
-    app.get('/test', (req, res) => {
-  res.send('✅ Backend is running');
-});
 
-    app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-  })
-  .catch((err) => console.error(err));
+// ✅ Render assigns a custom port, so bind to process.env.PORT
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log("MongoDB connected");
+  app.listen(PORT, () => console.log(`✅ Server started on port ${PORT}`));
+})
+.catch((err) => {
+  console.error("❌ DB connection failed:", err);
+});
