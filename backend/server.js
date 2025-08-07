@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: 'https://heath-app-livid.vercel.app',
+  origin: 'https://heath-app-six.vercel.app/prakriti',
   credentials: true
 }));
 app.use(express.json());
